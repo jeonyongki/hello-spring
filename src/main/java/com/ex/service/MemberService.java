@@ -41,6 +41,6 @@ public class MemberService {
   }
   public Optional<Member> findOne(int memberId){
     return memberRepository.findById(memberId);
-  };
+  }
 }
 
