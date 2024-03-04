@@ -29,7 +29,7 @@ public class MemberRepositoryJDBC implements MemberRepository{
       pstmt.executeUpdate();
       rs = pstmt.getGeneratedKeys();
       if (rs.next()) {
-        member.setId(rs.getLong(1));
+        member.setId(rs.getInt(1));
       } else {
         throw new SQLException("id 조회 실패");
       }
@@ -42,7 +42,7 @@ public class MemberRepositoryJDBC implements MemberRepository{
   }
 
   @Override
-  public Optional<Member> findById(Long id) {
+  public Optional<Member> findById(int id) {
     String sql = "select * from member where id = ?";
     Connection conn = null;
     PreparedStatement pstmt = null;
@@ -54,7 +54,7 @@ public class MemberRepositoryJDBC implements MemberRepository{
       rs = pstmt.executeQuery();
       if(rs.next()) {
         Member member = new Member();
-        member.setId(rs.getLong("id"));
+        member.setId(rs.getInt("id"));
         member.setName(rs.getString("name"));
         return Optional.of(member);
       } else {
@@ -80,7 +80,7 @@ public class MemberRepositoryJDBC implements MemberRepository{
       rs = pstmt.executeQuery();
       if(rs.next()) {
         Member member = new Member();
-        member.setId(rs.getLong("id"));
+        member.setId(rs.getInt("id"));
         member.setName(rs.getString("name"));
         return Optional.of(member);
       }
@@ -105,7 +105,7 @@ public class MemberRepositoryJDBC implements MemberRepository{
       List<Member> members = new ArrayList<>();
       while(rs.next()) {
         Member member = new Member();
-        member.setId(rs.getLong("id"));
+        member.setId(rs.getInt("id"));
         member.setName(rs.getString("name"));
         members.add(member);
       }

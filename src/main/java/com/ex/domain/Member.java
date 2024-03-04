@@ -1,14 +1,18 @@
 package com.ex.domain;
 
+import javax.persistence.*;
+
+@Entity
 public class Member {
-  private Long id;
+  @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private int id;
   private String name;
 
-  public Long getId() {
+  public int getId() {
     return id;
   }
 
-  public void setId(Long id) {
+  public void setId(int id) {
     this.id = id;
   }
 

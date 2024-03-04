@@ -7,8 +7,8 @@ import java.util.*;
 @Repository
 public class MemberRepositoryImpl implements MemberRepository{
 
-  private static Map<Long, Member> store = new HashMap<>();
-  private static Long sequence = 0L;
+  private static Map<Integer, Member> store = new HashMap<>();
+  private static int sequence = 0;
 
   @Override
   public Member insert(Member member) {
@@ -18,7 +18,7 @@ public class MemberRepositoryImpl implements MemberRepository{
   }
 
   @Override
-  public Optional<Member> findById(Long id) {
+  public Optional<Member> findById(int id) {
     return Optional.ofNullable(store.get(id));
   }
 
