@@ -17,6 +17,7 @@ public class MemberController {
   @Autowired//생성자 주입 DI
   public MemberController(MemberService memberService) {
     this.memberService = memberService;
+    System.out.println("memberService.getClass() = " + memberService.getClass());
   }
 
   @GetMapping("members/new")

@@ -1,5 +1,6 @@
 package com.ex;
 
+import com.ex.aop.TimeTraceAop;
 import com.ex.repository.MemberRepository;
 import com.ex.repository.MemberRepositoryJdbcTemplate;
 import com.ex.service.MemberService;
@@ -26,4 +27,9 @@ public class SpringConfig {
   public MemberRepository memberRepository() {
     return new MemberRepositoryJdbcTemplate(dataSource);
   }
+
+//  @Bean
+//  public TimeTraceAop timeTraceAop(){
+//    return new TimeTraceAop();
+//  }
 }
