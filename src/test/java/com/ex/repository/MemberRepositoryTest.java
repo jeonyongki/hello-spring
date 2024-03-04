@@ -19,7 +19,7 @@ public class MemberRepositoryTest {
   public void insertTest(){
     Member member = new Member();
     member.setName("arin");
-    memberRepository.insert(member);
+    memberRepository.save(member);
     Member result = memberRepository.findById(member.getId()).get();
 
 //    Assertions.assertEquals(member, result);//객체비교
@@ -29,11 +29,11 @@ public class MemberRepositoryTest {
   public void findByNameTest(){
     Member member1 = new Member();
     member1.setName("spring1");
-    memberRepository.insert(member1);
+    memberRepository.save(member1);
 
     Member member2 = new Member();
     member2.setName("spring2");
-    memberRepository.insert(member2);
+    memberRepository.save(member2);
 
     Member result = memberRepository.findByName("spring1").get();
 
@@ -44,11 +44,11 @@ public class MemberRepositoryTest {
   public void findAllTest(){
     Member member1 = new Member();
     member1.setName("spring1");
-    memberRepository.insert(member1);
+    memberRepository.save(member1);
 
     Member member2 = new Member();
     member2.setName("spring2");
-    memberRepository.insert(member2);
+    memberRepository.save(member2);
 
     List<Member> result = memberRepository.findAll();
     assertThat(result.size()).isEqualTo(2);

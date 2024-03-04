@@ -2,7 +2,6 @@ package com.ex.repository;
 
 
 import com.ex.domain.Member;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.EntityManager;
 import java.util.List;
@@ -10,27 +9,27 @@ import java.util.Optional;
 
 public class JpaMemberRepository implements MemberRepository{
 
-  private final EntityManager entityManager;
+  private final EntityManager em;
 
-  public JpaMemberRepository(EntityManager entityManager) {
-    this.entityManager = entityManager;
+  public JpaMemberRepository(EntityManager em) {
+    this.em = em;
   }
 
   @Override
-  public Member insert(Member member) {
-    entityManager.persist(member);
+  public Member save(Member member) {
+    em.persist(member);
     return member;
   }
 
   @Override
   public Optional<Member> findById(int id) {
-    Member member = entityManager.find(Member.class, id);
+    Member member = em.find(Member.class, id);
     return Optional.ofNullable(member);
   }
 
   @Override
   public Optional<Member> findByName(String name) {
-    List<Member> result = entityManager.createQuery("select m from Member as m where m.name=:name", Member.class)
+    List<Member> result = em.createQuery("select m from Member as m where m.name=:name", Member.class)
         .setParameter("name", name)
         .getResultList();
     return result.stream().findAny();
@@ -38,7 +37,7 @@ public class JpaMemberRepository implements MemberRepository{
 
   @Override
   public List<Member> findAll() {
-    return entityManager.createQuery("select m from Member as m", Member.class)
+    return em.createQuery("select m from Member as m", Member.class)
         .getResultList();
   }
 }

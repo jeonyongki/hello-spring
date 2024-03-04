@@ -16,22 +16,22 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest
-public class MemberServiceIntegrationTest {
+@Transactional
+class MemberServiceIntegrationTest {
   @Autowired MemberService memberService;
   @Autowired MemberRepository memberRepository;
 
   @Test
-  @Transactional
-  public void joinTest() throws Exception{
+  public void 회원가입() throws Exception{
     //given
     Member member = new Member();
-    member.setName("arin");
+    member.setName("spring");
 
     //when
-    int inputId = memberService.join(member);
+    int saveId = memberService.join(member);
 
     //then
-    Member findMember = memberService.findOne(inputId).get();
+    Member findMember = memberService.findOne(saveId).get();
     assertThat(member.getName()).isEqualTo(findMember.getName());
   }
   @Test

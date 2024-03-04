@@ -10,7 +10,7 @@ import java.util.Optional;
 @Transactional
 public class MemberService {
 
-  private final MemberRepository memberRepository;
+  private MemberRepository memberRepository;
 
   public MemberService(MemberRepository memberRepository) {
     this.memberRepository = memberRepository;
@@ -21,7 +21,7 @@ public class MemberService {
    * */
   public int join(Member member){
     validateDuplicateMember(member);//중복회원검증
-    memberRepository.insert(member);
+    memberRepository.save(member);
     System.out.println("member.getId() = " + member.getId());
     System.out.println("member.getName() = " + member.getName());
     return member.getId();
